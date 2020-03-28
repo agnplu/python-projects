@@ -13,11 +13,7 @@ def main():
     print('Getting staff urls...')
     
     staff_url = 'http://wa.amu.edu.pl/wa/en/staff_list'
-    response = urllib.request.urlopen(staff_url)
-    data = response.read()
-    doc = BeautifulSoup(data, 'html.parser')
-    
-    staff_content = doc.find(id = 'tresc_wlasciwa')
+    staff_content = get_content(staff_url)
     
     links = staff_content.find_all('a')
     
@@ -31,5 +27,11 @@ def main():
         
     print('Urls found:')
     print('\n'.join(urls))
+
+def get_content(url):
+    response = urllib.request.urlopen(url)
+    data = response.read()
+    doc = BeautifulSoup(data, 'html.parser')
+    return doc.find(id = 'tresc_wlasciwa')
     
 main()
