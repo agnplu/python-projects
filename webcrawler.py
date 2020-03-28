@@ -24,6 +24,7 @@ def main():
             base_url = 'http://wa.amu.edu.pl'
             url = urllib.parse.urljoin(base_url, link['href'])
             urls.append(url)
+            
     print('Staff headers found: ')
     for url in urls:
         print(get_details(url))
