@@ -42,6 +42,11 @@ def get_details(url):
         print('Error getting details from', url)
         return 'no content'
     header = content.find('h1')
-    return header.get_text()
+    links = content.find_all('a')
+    for link in links:
+        if link.has_attr('href') and link['href'].startswith('mailto:'):
+            email = link.get_text()
+            return header.get_text() + ': ' + email
+    return header.get_text() + '(no email found)'
     
 main()
