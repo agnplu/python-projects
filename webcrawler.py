@@ -23,11 +23,18 @@ def main():
         if len(link.get_text()) > 1:
             base_url = 'http://wa.amu.edu.pl'
             url = urllib.parse.urljoin(base_url, link['href'])
-            urls.append(url)
+            encoded_url = fix_encoding(url)
+            urls.append(encoded_url)
             
     print('Staff headers found: ')
     for url in urls:
         print(get_details(url))
+        
+def fix_encoding(url):
+    components = urllib.parse.urlsplit(url)
+    components = list(components)
+    components[2] = urllib.parse.quote(components[2])
+    return urllib.parse.urlunsplit(components)
 
 def get_content(url):
     response = urllib.request.urlopen(url)
