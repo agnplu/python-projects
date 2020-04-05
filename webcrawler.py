@@ -28,10 +28,11 @@ def main():
             encoded_url = fix_encoding(url)
             urls.append(encoded_url)
             
-    print('Staff headers found: ')
+    print('Staff emails found: ')
     
-    mypool = Pool()
-    mypool.map(print_details, urls)
+    if __name__ == '__main__':
+        mypool = Pool()
+        mypool.map(print_details, urls)
     
         
 def fix_encoding(url):
@@ -63,10 +64,5 @@ def get_details(url):
             return header.get_text() + ': ' + email
     return header.get_text() + '(no email found)'
 
-start = datetime.now().timestamp()
     
 main()
-
-end = datetime.now().timestamp()
-duration = end - start
-print('Processing time =' + str(duration))
