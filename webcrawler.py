@@ -39,7 +39,11 @@ def get_content(url):
     return doc.find(id = 'tresc_wlasciwa')
 
 def get_details(url):
-    content = get_content(url)
+    try:
+        content = get_content(url)
+    except:
+        print('Error getting details from', url)
+        return 'no content'
     header = content.find('h1')
     return header.get_text()
     
