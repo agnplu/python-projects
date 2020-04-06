@@ -8,7 +8,6 @@ Created on Sat Mar 28 13:42:30 2020
 import urllib.request
 from bs4 import BeautifulSoup
 import urllib.parse
-from datetime import datetime
 from multiprocessing import Pool
 
 def main():
