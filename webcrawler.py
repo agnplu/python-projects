@@ -23,7 +23,10 @@ def main():
     for link in links:
         if len(link.get_text()) > 1:
             base_url = 'http://wa.amu.edu.pl'
-            url = urllib.parse.urljoin(base_url, link['href'])
+            if link['href'][:4] != 'http':
+                url = urllib.parse.urljoin(base_url, link['href'])
+            else:
+                url = link['href']
             encoded_url = fix_encoding(url)
             urls.append(encoded_url)
             
