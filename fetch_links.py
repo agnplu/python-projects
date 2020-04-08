@@ -14,6 +14,13 @@ def main():
     content = get_content(user_url)
         
     lists = content.find_all('ol')
+    
+    for i in range(len(lists)):
+        elements = lists[i].find_all('li')
+        print("List number {}".format(i+1))
+        for j in range(len(elements)):
+            print("\t{}) {}".format(j+1, elements[j].get_text())) 
+    
     return
 
 def get_content(url):
