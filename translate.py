@@ -7,10 +7,11 @@ Created on Fri Apr 10 16:13:27 2020
 
 from googletrans import Translator
 import requests
+import json
 
 def googletrans():
     translator = Translator()
-    result = translator.translate('Jak się masz?')
+    result = translator.translate('Jak się masz?', dest = 'es')
     print(result.text)
     
 def piratetrans(text):
@@ -18,6 +19,8 @@ def piratetrans(text):
     data = {'text': text}
     
     response = requests.post(url, data = data)
-    print(response.text)
+    json_data = json.loads(response.text)
+    print(type(json_data))
+    print(json_data['contents'] ['translated'])
     
-piratetrans('Hello, sir')
+piratetrans('What are you going to eat?')
