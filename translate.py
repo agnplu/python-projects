@@ -20,7 +20,6 @@ def piratetrans(text):
     
     response = requests.post(url, data = data)
     json_data = json.loads(response.text)
-    print(type(json_data))
     print(json_data['contents'] ['translated'])
     
 piratetrans('What are you going to eat?')
